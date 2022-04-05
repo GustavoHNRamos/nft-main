@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>collections</title>
+    <link rel="stylesheet" href="login-style.css">
+    <link rel="shortcut icon" href="../imagem/icone.ico" type="image/x-icon">
+</head>
+<body>
+    <!--Header section-->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="../index.html"><span>J</span>TPAG<span>E</span></samp></a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="../collections/collectons.html">Coleções</a>
+                    </li>
+                    <li>
+                        <a href="/contact/contato.html">Contato</a>
+                    </li>
+                    <li>
+                        <a href="/nft-main/pages/index.html #footer">Sobre</a>
+                    </li>
+                    <li>
+                        <a href="../index.html">Volta</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!--Login section-->
+    <section>
+        <article class="centro">
+            <fieldset>
+                <form></form>
+                <h2>Registrar</h2>
+                <label for="nome">Nome:</label><br><input type="text" name="nome" id="nome" placeholder="Seu nome" value="Eduardo">
+                <label for="email">Email:</label><br><input type="email" name="e-mail" id="email" placeholder="Seu e-mail" value="eduardo@email.com">
+                <label for="senha">Senha:</label><br><input type="password" name="senha" id="senha" placeholder="Sua senha" value="123456">
+                <p class="mensagem-enviar"></p>
+                <button id="enviar">Registrar</button>
+                <p>Ou <a href="../pages/login.html">faça login</a></p>
+            </fieldset>
+        </article>
+    </section>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+
+const enviarFormulario = document.getElementById('enviar').addEventListener('click', (e) => {
+      e.preventDefault()
+
+      const email = document.getElementById('email').value
+      const password = document.getElementById('senha').value
+      const name = document.getElementById('nome').value
+      const mensagemEnviar = document.getElementsByClassName('mensagem-enviar')
+
+      if (!email || !password || !name) {
+        mensagemEnviar[0].classList.remove('mensagem-sucesso')
+        mensagemEnviar[0].classList.add('mensagem-erro')
+        return mensagemEnviar[0].textContent = 'Existem dados faltando. Verifique e tente novamente';
+      }
+
+      axios.post('http://localhost:8080/login/create', {
+        password,
+        email,
+        name
+      }) 
+      .then((data) => {
+
+          if (data.status === 200) {
+            mensagemEnviar[0].classList.remove('mensagem-erro')
+            mensagemEnviar[0].classList.add('mensagem-sucesso')
+            mensagemEnviar[0].textContent = data.data.mensagem;
+
+          }
+
+      })
+      .catch((err) => {
+
+        if (err.response) {
+            if (err.response.status === 400) {
+                mensagemEnviar[0].classList.remove('mensagem-sucesso')
+                mensagemEnviar[0].classList.add('mensagem-erro')
+                return mensagemEnviar[0].textContent = err.response.data.mensagem
+            }
+
+            if (err.response.status !== 400) {
+                mensagemEnviar[0].classList.remove('mensagem-sucesso')
+                mensagemEnviar[0].classList.add('mensagem-erro')
+                return mensagemEnviar[0].textContent = 'Erro desconhecido, entre em contato.'
+            }
+        }
+      })
+
+    })
+
+</script>
+
+</html>

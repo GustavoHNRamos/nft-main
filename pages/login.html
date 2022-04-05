@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>collections</title>
+    <link rel="stylesheet" href="./login-style.css">
+    <link rel="shortcut icon" href="../imagem/icone.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="../index.html"><span>J</span>TPAG<span>E</span></a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li id="menu-colecoes">
+                        <a href="#">Coleções</a>
+                        <ul>
+                            <li><a href="../collectons.html#monkeys">Monkeys</a>
+                            <li><a href="../collectons.html#invisible">Invisible</a>
+                            <li><a href="../collectons.html#punks">Punks</a>
+                            <li><a href="../collectons.html">Ver todas</a>
+                        </ul>
+                    <li>
+                        <a href="/contact/contato.html">Contato</a>
+                    <li>
+                    <a href="../sobre.html">Sobre</a>
+                        <ul>
+                            <li><a href="./sobre.html#nfts">NFTs</a>
+                            <li><a href="./sobre.html#artistas">Artistas</a>
+                            <li><a href="./sobre.html#empresa">Empresa</a>
+                            <li><a href="./sobre.html#juntar-se">Juntar-se</a>
+                        </ul>
+                    <li>
+                        <a href="/pages/login.html">Entrar</a>
+                    <li>
+                        <p class="usuario-logado"></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!--Login section-->
+    <section>
+        <article class="centro">
+            <fieldset>
+                <form></form>
+                <h2>Entrar</h2>
+                <label for="email">E-mail:</label><br><input type="email" name="e-mail" id="email" placeholder="Seu e-mail">
+                <label for="senha">Senha:</label><br><input type="password" name="senha" id="senha" placeholder="Sua senha">
+                <p class="mensagem-enviar"></p>
+                <button id="enviar">Entrar</button>
+                <p>Ou se <a href="../pages/registrar.html">registre agora</a></p>
+            </fieldset>
+        </article>
+    </section>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+
+    const enviarFormulario = document.getElementById('enviar').addEventListener('click', (e) => {
+      e.preventDefault()
+
+      const email = document.getElementById('email').value
+      const password = document.getElementById('senha').value
+      const mensagemEnviar = document.getElementsByClassName('mensagem-enviar')
+      const usuarioLogado = document.getElementsByClassName('usuario-logado')
+
+      if (!email || !password) {
+        mensagemEnviar[0].classList.remove('mensagem-sucesso')
+        mensagemEnviar[0].classList.add('mensagem-erro')
+        return mensagemEnviar[0].textContent = 'Existem dados faltando. Verifique e tente novamente';
+      }
+
+      axios.post('http://localhost:8080/login', {
+        password,
+        email
+      }) 
+      .then((data) => {
+            /*
+            1- Ao realizar login com sucesso, atribuir ID do usuário nos cookies com a chave user_id
+            2- Ao acessar cada página do site, verificar se existe alguma chave user_id nos cookies
+                2.1 - Caso não tenha a chave, bloquear a página e retornar para o login para usuário se autenticar
+                2.2 - Caso exista a chave e seja válida, liberar acesso a página
+            */
+
+            if (data.status === 200) {
+
+                mensagemEnviar[0].classList.remove('mensagem-erro')
+                mensagemEnviar[0].classList.add('mensagem-sucesso')
+                mensagemEnviar[0].textContent = data.data.mensagem;
+
+                console.log(data.data.usuario)
+
+                document.cookie = `user_name=${data.data.usuario.nome}`
+
+                function getCookie (name) {
+                    let value = `; ${document.cookie}`;
+                    let parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();
+                }
+                console.log(getCookie('user_name'))
+
+                if (getCookie('user_name')) {
+                    usuarioLogado[0].textContent = getCookie('user_name')
+                }
+            }
+        })
+
+        .catch((err) => {
+
+            if (err.response) {
+                    console.log(err.response)
+                if (err.response.status === 404) {
+                    mensagemEnviar[0].classList.remove('mensagem-sucesso')
+                    mensagemEnviar[0].classList.add('mensagem-erro')
+                    return mensagemEnviar[0].textContent = err.response.data.mensagem
+                }
+
+                if (err.response.status !== 404) {
+                    mensagemEnviar[0].classList.remove('mensagem-sucesso')
+                    mensagemEnviar[0].classList.add('mensagem-erro')
+                    return mensagemEnviar[0].textContent = 'Erro desconhecido, entre em contato.'
+                }
+            }
+        })
+        .then(data => console.log(data.json()))
+
+    })
+
+</script>
+
+</html>

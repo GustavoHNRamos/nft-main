@@ -1,0 +1,163 @@
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap");
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/*Header section*/
+.navbar {
+  background-color: black;
+  position: fixed;
+  height: 75px;
+  width: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2em;
+  z-index: 999;
+}
+
+.logo a {
+  margin-left: 2em;
+  font-size: 2em;
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo a span {
+  color: green;
+}
+
+.menu {
+  width: 26%;
+  float: right;
+}
+
+.menu ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul li {
+  display: inline;
+  position: relative;
+  font-size: 0.9em;
+}
+
+.menu ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  transition: background .3s;
+}
+
+.menu ul li a:hover{
+  background-color: rgba(199, 199, 199, 0.3);
+  color: #ccc;
+}
+
+/*menu down*/
+.menu ul ul{
+  display: none;
+  position: absolute;
+}
+
+.menu ul li:hover ul{
+  background-color: black;
+  position: absolute;
+  display: block;
+  left:0;
+}
+
+.menu ul ul{
+  width: 100px;
+}
+
+.menu ul ul li{
+  display: inline;
+}
+
+.menu ul ul li a{
+  display: block;
+}
+/*menu down*/
+
+/*Login section*/
+.centro {
+  width: 230px;
+  height: 400px;
+  margin: 200px auto;
+}
+
+button {
+  padding: 8px 24px;
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  background: #0c6;
+  box-shadow: 0px 4px 12px rgba(0, 122, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  margin: 0 auto;
+  margin-top: 16px;
+  display: flex;
+}
+
+button:hover {
+  background-color: #579448;
+}
+
+label {
+  font-weight: 600;
+}
+
+input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: none;
+  padding: 6px;
+}
+
+fieldset {
+  background-color: #ccc;
+  border-radius: 8px;
+}
+
+p {
+  text-align: center;
+}
+
+p a {
+  text-decoration: none;
+  color: blue;
+}
+
+.mensagem-erro {
+  color: red;
+  font-weight: 600;
+}
+
+.mensagem-sucesso {
+  color: green;
+  font-weight: 600;
+}
+
+.usuario-logado {
+  color: #ffffff;
+  font-weight: 600;
+}

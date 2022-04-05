@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;1,400&display=swap");
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Mont Serrat", sans-serif;
+  background-color: #131313;
+}
+
+/* Header Section */
+.navbar {
+  background-color: black;
+  position: fixed;
+  height: 75px;
+  width: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2em;
+  z-index: 999;
+}
+
+.logo a {
+  margin-left: 2em;
+  font-size: 2em;
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo a span {
+  color: green;
+}
+
+.menu {
+  width: 26%;
+  float: right;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul li {
+  display: inline;
+  position: relative;
+  font-size: 0.9em;
+}
+
+.menu ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  transition: background 0.3s;
+}
+
+.menu ul li a:hover {
+  background-color: rgba(199, 199, 199, 0.3);
+  color: #ccc;
+}
+
+/*menu down*/
+.menu ul ul {
+  display: none;
+  position: absolute;
+}
+
+.menu ul li:hover ul {
+  background-color: black;
+  position: absolute;
+  display: block;
+  left: 0;
+}
+
+.menu ul ul {
+  width: 100px;
+}
+
+.menu ul ul li {
+  display: inline;
+}
+
+.menu ul ul li a {
+  display: block;
+}
+/*menu down*/
+
+/* Hero Section */
+.inicio {
+  width: 50em;
+  margin: 180px auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.hero-h1 {
+  color: #fff;
+  width: 90%;
+  font-size: 40px;
+  margin-bottom: 0;
+}
+
+.hero-h1 span {
+  color: green;
+}
+
+.hero-p {
+  color: #fff;
+  font-size: 30px;
+}
+
+.hero-heading {
+  margin-left: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-btn a {
+  position: relative;
+  z-index: 2;
+  color: #000;
+  text-decoration: none;
+}
+
+.hero-btn {
+  position: relative;
+  padding: 0.8em;
+  background-color: #fff;
+  border: none;
+  width: 25%;
+  font-size: 1.1em;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid black;
+}
+
+.hero-btn:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: green;
+  transition: all 0.5s;
+  border-radius: 3px;
+}
+
+.hero-btn:hover:after {
+  width: 100%;
+}
+
+.hero-img {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 80%;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+/* News/Collections Section */
+.back {
+  margin: 100px auto 100px auto;
+  background-color: #131313;
+  width: 95%;
+  padding: 10px 0 1px 6px;
+  border: 1px solid black;
+}
+
+.layout {
+  width: 1100px;
+  margin: 20px auto;
+}
+
+.layout h1 {
+  font-size: 50px;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.layout ul li {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin-left: 20px;
+  padding: 2px 2px 0 2px;
+  border: 2px solid black;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.layout ul li:hover {
+  transform: scale(1.075);
+  transition: 0.3s ease-in;
+}
+
+.layout img {
+  object-fit: cover;
+}
+
+.layout p {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px 0 5px;
+}
+
+.layout ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.layout ul li a:hover {
+  color: green;
+}
+
+/* Footer Section */
+
+.fundo {
+  width: 100%;
+  height: 150px;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.rodape {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.rodape h2 {
+  color: #fff;
+}
+
+.rodape p {
+  color: #e9e9e9;
+}
+
+.sobre {
+  width: 50%;
+  float: left;
+  display: inline;
+}
+
+.contact {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  width: 30%;
+  float: right;
+  display: inline;
+}
+
+.fonte ul li a {
+  text-decoration: none;
+  color: #e9e9e9;
+}
+
+.fonte ul li a:hover {
+  color: rgb(48, 48, 48);
+  border-bottom: 2px solid rgb(10, 10, 10);
+}
